@@ -1,0 +1,18 @@
+<?php
+use GuzzleHttp\Client;
+require '../vendor/autoload.php';
+
+$client = new Client([
+    'base_uri' => 'http://httpbin.org',
+    'timeout' => 2.0
+]);
+$response = $client->request('Get','ip');
+echo $response->getStatusCode(),"<br>";
+$body = $response->getBody();
+echo $body->getContents(),"<br>";
+echo "<pre>";
+print_r(get_class_methods($body));
+echo "</pre>";
+echo "<pre>";
+print_r(get_class_methods($response));
+echo "</pre>";
